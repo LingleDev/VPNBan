@@ -1,5 +1,6 @@
 const fetch = require(`node-fetch`)
-var seq = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);
+let cache = new Map();
+let ms = require('ms')
 
 class VPNBan {
   /**
@@ -39,12 +40,22 @@ class VPNBan {
     // console.log(this)
 
     if (this.vpn) {
-      let r = await fetch(`http://check.getipintel.net/check.php?ip=${ip}&contact=${this.email}&flags=b&format=json`)
-      let json = await r.json();
+      if (!cache.has(ip)) {
+        let r = await fetch(`http://check.getipintel.net/check.php?ip=${ip}&contact=${this.email}&flags=b&format=json`)
+        let json = await r.json();
 
-      console.log(json)
+        if (json.result < 0) {
+          throw new Error(`Error: ${json.message}`)
+        }
 
-      if (json.result >= .91) return this.callback(req,res,next);
+        cache.set(ip, json.result)
+
+        if (json.result >= .91) return this.callback(req,res,next);
+      } else {
+        let result = cache.get(ip);
+
+        if (result >= .91) return this.callback(req,res,next)
+      }
     }
 
     if (this.blocked_ips.includes(ip)) {
@@ -56,5 +67,8 @@ class VPNBan {
   }
 }
 
+setInterval(() => {
+  cache.clear();
+}, ms("6h"))
 
 module.exports = VPNBan
