@@ -23,6 +23,7 @@ app.get(`/`, (req,res) => {
   res.send(`Not a VPN!`)
 })
 
+// ...
 ```
 
 ## Other Features
@@ -46,6 +47,7 @@ app.get('/', (req,res) => {
   res.send(`Not blocked!`)
 })
 
+// ...
 ```
 
 ## Why?
