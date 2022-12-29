@@ -1,3 +1,5 @@
+![VPNBan](./img/VPNBan.svg)
+
 # VPNBan
 A small Express middleware used to filter suspected VPN IP addresses (and more)
 
@@ -51,5 +53,5 @@ app.get('/', (req,res) => {
 ```
 
 ## Why?
-I wrote this module for people who don't want VPN users evading their IP bans. It is a major issue on many platforms.
+I wrote this module for people who don't want VPN users evading their IP bans. It is a major issue on many platforms.  
 I also use it in my own Express apps, so functionality is guaranteed.
