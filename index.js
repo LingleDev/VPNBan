@@ -9,9 +9,9 @@ class VPNBan {
  * @param {Function} options.callback A callback function that is called if an IP is flagged and blocked.
  * @returns 
  */
-  constructor(options = { vpn: true }) {
+  constructor(options) {
     this.vpn = options.vpn || true
-    this.blocked_ips = options.blocked_ips
+    this.blocked_ips = options.blocked_ips || [ ]
     this.callback = options.callback
 
     // console.log(this.vpn)
