@@ -16,6 +16,7 @@ const app = express()
 const VPNBan = require('vpnban')
 
 let ban = new VPNBan({
+  email: "", // a valid email address is required
   callback: (req,res,next) => {} // See below for details
 })
 
@@ -36,6 +37,7 @@ const app = express()
 const VPNBan = require('vpnban')
 
 let ban = new VPNBan({
+  email: "", // a valid email address is required
   vpn: false, // VPN blocking is enabled by default, but you can disable it if you just want to block certain IPs.
   blocked_ips: ["1.2.3.4"], // any IP addresses you want to be blocked
   callback: (req,res,next) => { // A function with parameters of Express Request & Response objects and a next() function, respectively. Use this to display a custom 'blocked' page

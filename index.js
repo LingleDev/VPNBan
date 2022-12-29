@@ -1,4 +1,5 @@
 const fetch = require(`node-fetch`)
+var seq = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);
 
 class VPNBan {
   /**
@@ -10,15 +11,18 @@ class VPNBan {
  * @returns 
  */
   constructor(options={}) {
-    this.vpn = options.vpn || true
-    this.blocked_ips = options.blocked_ips || [ ]
+    this.vpn = options.vpn
+    this.blocked_ips = options.blocked_ips || []
     this.callback = options.callback
+    this.email = options.email
 
-    // console.log(this.vpn)
+    if (!this.email) throw new Error(`You must provide an email address to use.`)
+
+    if (typeof this.vpn == "undefined") this.vpn = true;
 
     if (typeof this.callback == "undefined") {
       this.callback = (req,res,next) => {
-        return res.status(403).send(`<h1>You have been blocked from ${req.hostname} using VPNBan for Express</h1>`)
+        return res.status(403).send(`<h1>You have been blocked from ${req.hostname} using VPNBan</h1>`)
       }
     }
 
@@ -31,13 +35,14 @@ class VPNBan {
     if (req.app.get("trust proxy") == 1) {
       ip = req.headers["x-forwarded-for"];
     }
-  
 
     // console.log(this)
 
     if (this.vpn) {
-      let r = await fetch(`http://check.getipintel.net/check.php?ip=${ip}&contact=gideon.lingle2023@gmail.com&flags=b&format=json`)
+      let r = await fetch(`http://check.getipintel.net/check.php?ip=${ip}&contact=${this.email}&flags=b&format=json`)
       let json = await r.json();
+
+      console.log(json)
 
       if (json.result >= .91) return this.callback(req,res,next);
     }
