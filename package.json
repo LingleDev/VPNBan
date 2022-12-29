@@ -1,9 +1,9 @@
 {
   "name": "vpnban",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A small Express middleware used to filter suspected VPN IP addresses",
   "main": "index.js",
-  "typings": "./typings/index.d.ts",
+  "typings": "./types/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
