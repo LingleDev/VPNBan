@@ -1,0 +1,24 @@
+{
+  "name": "vpnban",
+  "version": "1.0.0",
+  "description": "A small Express middleware used to filter suspected VPN IP addresses",
+  "main": "index.js",
+  "typings": "./typings/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "vpnban",
+    "vpn",
+    "express-vpn"
+  ],
+  "author": "LingleDev",
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  },
+  "devDependencies": {
+    "express": "^4.18.2"
+  }
+}
