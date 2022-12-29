@@ -1,4 +1,4 @@
-![VPNBan](./img/VPNBan.svg)
+<img src="./img/VPNBan.svg" width=128>
 
 # VPNBan
 A small Express middleware used to filter suspected VPN IP addresses (and more)
