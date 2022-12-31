@@ -45,7 +45,7 @@ class VPNBan {
         let json = await r.json();
 
         if (json.result < 0) {
-          throw new Error(`Error: ${json.message}`)
+          return next(new Error(`Error: ${json.message}`))
         }
 
         cache.set(ip, json.result)
@@ -62,7 +62,7 @@ class VPNBan {
       return this.callback(req,res,next)
     }
 
-    next()
+    return next()
 
   }
 }
