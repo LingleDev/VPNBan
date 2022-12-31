@@ -4,8 +4,10 @@
   "description": "A small Express middleware used to filter suspected VPN IP addresses",
   "main": "index.js",
   "typings": "./types/index.d.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "homepage": "https://github.com/LingleDev/vpnban#readme",
+  "bugs": {
+    "url": "https://github.com/LingleDev/vpnban/issues",
+    "email": "gideon.lingle2023@gmail.com"
   },
   "keywords": [
     "express",
